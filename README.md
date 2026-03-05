@@ -63,17 +63,25 @@ Se entrenaron y compararon dos arquitecturas para encontrar el equilibrio entre 
 ### **Análisis de Coeficientes (Regresión Logística)**
 Para entender no solo qué variables importan, sino **cómo** afectan la decisión del cliente, se analizaron los coeficientes del modelo. Los valores positivos aumentan el riesgo de Churn, mientras que los valores negativos indican factores de retención.
 
-| Variable | Coeficiente | Impacto |
+#### **Factores que aumentan el riesgo de cancelación (Top Positivos)**
+| Variable | Coeficiente | Impacto en el Negocio |
 | :--- | :---: | :--- |
-| **Charges.Total** | `0.6750` | Mayor Riesgo |
-| **InternetService_Fiber optic** | `0.6277` | Mayor Riesgo |
-| **PaperlessBilling** | `0.1895` | Riesgo Moderado |
-| **PaymentMethod_Electronic check** | `0.1612` | Riesgo Moderado |
-| ... | ... | ... |
-| **TechSupport** | `-0.1281` | Retenedor |
-| **Contract_One year** | `-0.2583` | Retenedor Fuerte |
-| **Contract_Two year** | `-0.5455` | Retenedor Fuerte |
-| **tenure (Antigüedad)** | `-1.4231` | Principal Factor de Lealtad |
+| **Charges.Total** | `0.6750` | A mayor gasto acumulado, mayor sensibilidad al precio. |
+| **InternetService_Fiber optic** | `0.6277` | Los clientes con fibra óptica tienen más tendencia a irse. |
+| **PaperlessBilling** | `0.1895` | La facturación electrónica se asocia con mayor volatilidad. |
+| **StreamingTV / StreamingMovies** | `0.1840` | El uso de servicios de entretenimiento aumenta el riesgo. |
+| **PaymentMethod_Electronic check** | `0.1612` | El método de pago menos estable. |
+| **MultipleLines** | `0.1495` | Clientes con múltiples líneas son más propensos al cambio. |
+
+#### **Factores que fomentan la lealtad (Top Negativos)**
+| Variable | Coeficiente | Impacto en el Negocio |
+| :--- | :---: | :--- |
+| **tenure (Antigüedad)** | `-1.4231` | **El factor más fuerte.** A más tiempo, menos riesgo. |
+| **Contract_Two year** | `-0.5455` | Los contratos largos blindan al cliente. |
+| **InternetService_No** | `-0.5213` | Clientes sin internet (solo telefonía) son muy leales. |
+| **Charges.Monthly** | `-0.3452` | Curiosamente, cargos mensuales controlados retienen mejor. |
+| **Contract_One year** | `-0.2583` | El contrato anual es una barrera efectiva contra el Churn. |
+| **TechSupport / OnlineSecurity** | `-0.1281` | Los servicios de valor agregado aumentan la permanencia. |
 
 > **Interpretación clave:** La antigüedad (`tenure`) es el factor con más peso para evitar que un cliente se vaya. Por el contrario, los cargos totales altos y el uso de fibra óptica son los principales motores que impulsan al cliente hacia la cancelación.
 
